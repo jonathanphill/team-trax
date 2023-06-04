@@ -1,5 +1,5 @@
 import './RadioSelection.css';
-import { UserId, ClearData } from "../../context/EmployeeContext";
+import {ClearData } from "../../context/EmployeeContext";
 import { useContext } from 'react';
 
 const RadioSelection = ({setRadioSelection }) => {

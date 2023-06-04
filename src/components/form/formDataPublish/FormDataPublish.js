@@ -19,18 +19,7 @@ const FormDataPublish = ({employee}) => {
     }
      const database = getDatabase(firebase);
      const dbRef = ref(database);
-//   useEffect(()=>{
-//     delete employee.radioSelection;
-//       // const newPostKey = push(child(ref(database), "0/posts")).key;
-//       update(ref(database, `${employee.key}/timeOffData`), {
-//         ...employee
-//       });
-//       onValue(dbRef, (snapshot) => {
-//         const data = snapshot.val();
-//         console.log(data);
-//       });
 
-//   },[])
 
   return <div></div>;
 }

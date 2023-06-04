@@ -11,11 +11,7 @@ import {
 import {
   getDatabase,
   ref,
-  onValue,
-  get,
   push,
-  update,
-  set,
 } from "firebase/database";
 import firebase from "./firebase";
 
@@ -39,38 +35,39 @@ function App() {
   let [toggleForm, setToggleForm] = useState(false);
 
   useEffect(() => {
-    setFormData(formData);
-    // console.log(formData);
-
-    if (formData.timeOffData.sickTime.length > 0) {
-      // console.log(`Sick Time Updated`);
-      delete formData.radioSelection;
-      set(ref(database, `${formData.key}/timeOffData/sickTime/`), {
-        ...formData.timeOffData.sickTime,
-      });
-      setFormData({
-        key: "",
-        radioSelection: "",
-        timeOffData: {
-          sickTime: [],
-          personalTime: [],
-        },
-      });
-    } else if (formData.timeOffData.personalTime.length > 0) {
-      // console.log(`Personal Time Updates`);
-      delete formData.radioSelection;
-      set(ref(database, `${formData.key}/timeOffData/personalTime/`), {
-        ...formData.timeOffData.personalTime,
-      });
-      setFormData({
-        key: "",
-        radioSelection: "",
-        timeOffData: {
-          sickTime: [],
-          personalTime: [],
-        },
-      });
+    if(!formData.key){
+      formData.timeOffData.sickTime.length=0
+      formData.timeOffData.personalTime.length=0
+      return;
     }
+    
+      if (formData.timeOffData.sickTime.length > 0) {
+        delete formData.radioSelection;
+        push(ref(database, `${formData.key}/timeOffData/sickTime/`), {
+          ...formData.timeOffData.sickTime,
+        });
+        setFormData({
+          key: "",
+          radioSelection: "",
+          timeOffData: {
+            sickTime: [],
+            personalTime: [],
+          },
+        });
+      } else if (formData.timeOffData.personalTime.length > 0) {
+        delete formData.radioSelection;
+        push(ref(database, `${formData.key}/timeOffData/personalTime/`), {
+          ...formData.timeOffData.personalTime,
+        });
+        setFormData({
+          key: "",
+          radioSelection: "",
+          timeOffData: {
+            sickTime: [],
+            personalTime: [],
+          },
+        });
+      }
   }, [userId, currentEmployeeName, toggleForm, formData, database]);
 
   return (

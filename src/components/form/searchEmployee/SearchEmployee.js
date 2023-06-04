@@ -1,13 +1,12 @@
 import { FaSearch } from "react-icons/fa";
 import "./SearchEmployee.css";
-import { useState, useContext, useEffect, useRef, useId } from "react";
+import { useState, useContext, useEffect, useRef } from "react";
 import { CurrentUser, UserId, ClearData } from "../../context/EmployeeContext";
 import { getDatabase, ref, onValue } from "firebase/database";
 import firebase from "../../../firebase";
 
 const SearchEmployee = () => {
   const [searchableList, setSearchableList] = useState([]);
-  // const [employeeName, setEmployeeName] = useState("");
   const { currentEmployeeName, setCurrentEmployeeName } =
     useContext(CurrentUser);
   const { formData, setFormData } = useContext(ClearData);

@@ -14,9 +14,9 @@ const Form = ({ clearForm }) => {
   const [radioSelection, setRadioSelection] = useState("");
   const [selectedDateRange, setSelectedDateRange] = useState(clearDateRange);
   const { formData, setFormData } = useContext(ClearData);
-  const { currentEmployeeName, setCurrentEmployeeName } =
+  const {setCurrentEmployeeName } =
     useContext(CurrentUser);
-  const { userId } = useContext(UserId);
+  const { userId} = useContext(UserId);
   const handleFormSubmit = (e) => {
     setFormData({
       ...formData,
@@ -29,16 +29,10 @@ const Form = ({ clearForm }) => {
     if (userId && radioSelection) {
       
       if (radioSelection === "sickTime") {
-        // console.log(`From FORM Radio Selected Sick: ${formData.timeOffData.sickTime}`);
         formData.timeOffData.sickTime.push(selectedDateRange);
       } else if (radioSelection === "personalTime") {
-        // console.log(
-        //   `From FORM Radio Selected Personal: ${formData.timeOffData.personalTime}`
-        // );
         formData.timeOffData.personalTime.push(selectedDateRange);
-        // formData.timeOffData.personalTime.push(selectedDateRange);
       }
-      // console.log(formData);
     }
     setFormData(formData);
     setRadioSelection("");
