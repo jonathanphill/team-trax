@@ -1,10 +1,14 @@
 import './RadioSelection.css';
+import { UserId, ClearData } from "../../context/EmployeeContext";
+import { useContext } from 'react';
 
 const RadioSelection = ({setRadioSelection }) => {
+  const { formData, setFormData } = useContext(ClearData);
 
   const onOptionChange = (event) => {
     const value = event.target.value;
     setRadioSelection(value);
+    setFormData({ ...formData, radioSelection: value });
   };
  
   return (

@@ -1,26 +1,18 @@
 import { FaSearch } from "react-icons/fa";
 import "./SearchEmployee.css";
-import { useState, useContext, useEffect, useRef } from "react";
-import { CurrentUser, UserId } from "../../context/EmployeeContext";
-import {
-  getDatabase,
-  ref,
-  onValue,
-  get,
-  set,
-  push,
-  update,
-  child,
-} from "firebase/database";
+import { useState, useContext, useEffect, useRef, useId } from "react";
+import { CurrentUser, UserId, ClearData } from "../../context/EmployeeContext";
+import { getDatabase, ref, onValue } from "firebase/database";
 import firebase from "../../../firebase";
 
 const SearchEmployee = () => {
   const [searchableList, setSearchableList] = useState([]);
   // const [employeeName, setEmployeeName] = useState("");
-  const {currentEmployeeName, setCurrentEmployeeName } = useContext(CurrentUser);
-  const {setUserId } = useContext(UserId);
+  const { currentEmployeeName, setCurrentEmployeeName } =
+    useContext(CurrentUser);
+  const { formData, setFormData } = useContext(ClearData);
+  const { userId, setUserId } = useContext(UserId);
   const targetRef = useRef(null);
-
   useEffect(() => {
     const newState = [];
     // create a variable to hold our database details and set the connection to the database.
@@ -65,6 +57,7 @@ const SearchEmployee = () => {
     const clickedName = e.target.textContent;
     // setEmployeeName(clickedName);
     setCurrentEmployeeName(clickedName);
+   
   };
   return (
     <div className="employee__list">
@@ -101,6 +94,10 @@ const SearchEmployee = () => {
                     onClick={(e) => {
                       handleNameClick(e);
                       setUserId(obj.key);
+                      setFormData({
+                        ...formData,
+                        key: obj.key
+                      });
                     }}
                   >
                     <p>

@@ -1,71 +1,49 @@
 import "./Form.css";
 import RadioSelection from "./radioSelection/RadioSelection";
 import SearchEmployee from "./searchEmployee/SearchEmployee";
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext } from "react";
 import DateRangeSelection from "./dateRangeSelection/DateRangeSelection";
-import {UserId } from "../context/EmployeeContext";
-import FormDataPublish from "./formDataPublish/FormDataPublish";
-import firebase from "../../firebase";
-import {
-  getDatabase,
-  ref,
-  onValue,
-  get,
-  push,
-  update,
-} from "firebase/database";
+import { UserId, ClearData, CurrentUser } from "../context/EmployeeContext";
 
-
-
-
-
-
-const Form = ({clearForm}) => {
-  const clearData = {
-    key: "",
-    radioSelection: "",
-    timeOffData: {
-      sickTime: [],
-      personalTime: [],
-    },
-  };
-
+const Form = ({ clearForm }) => {
   const clearDateRange = {
     startDate: "",
     endDate: "",
     numberOfDays: 0,
   };
   const [radioSelection, setRadioSelection] = useState("");
-  let [formData,setFormData] = useState(clearData);
   const [selectedDateRange, setSelectedDateRange] = useState(clearDateRange);
+  const { formData, setFormData } = useContext(ClearData);
+  const { currentEmployeeName, setCurrentEmployeeName } =
+    useContext(CurrentUser);
   const { userId } = useContext(UserId);
-  const updateDatabase = useEffect(()=>{
-    
-
-  },[])
-
   const handleFormSubmit = (e) => {
-    
+    setFormData({
+      ...formData,
+      timeOffData: {
+        sickTime: [],
+        personalTime: [],
+      },
+    });
     e.preventDefault();
-    if(userId && radioSelection){
-      const employeeINFO = {
-        key: userId,
-        radioSelection: radioSelection,
-        timeOffData: {
-          sickTime: [],
-          personalTime: [],
-        },
-      };
-
+    if (userId && radioSelection) {
+      
       if (radioSelection === "sickTime") {
-        employeeINFO.timeOffData.sickTime.push(selectedDateRange);
+        // console.log(`From FORM Radio Selected Sick: ${formData.timeOffData.sickTime}`);
+        formData.timeOffData.sickTime.push(selectedDateRange);
       } else if (radioSelection === "personalTime") {
-        employeeINFO.timeOffData.personalTime.push(selectedDateRange);
+        // console.log(
+        //   `From FORM Radio Selected Personal: ${formData.timeOffData.personalTime}`
+        // );
+        formData.timeOffData.personalTime.push(selectedDateRange);
+        // formData.timeOffData.personalTime.push(selectedDateRange);
       }
-
+      // console.log(formData);
     }
-    clearForm(!true);
+    setFormData(formData);
     setRadioSelection("");
+    setCurrentEmployeeName("");
+    clearForm(!true);
   };
   return (
     <>
@@ -80,9 +58,6 @@ const Form = ({clearForm}) => {
             </button>
           </div>
         </form>
-      </div>
-      <div className="formDataPublish">
-        <FormDataPublish employee={formData} />
       </div>
     </>
   );
