@@ -3,7 +3,7 @@ import "react-date-range/dist/theme/default.css"; // theme css file
 import { DateRangePicker } from "react-date-range";
 import format from "date-fns/format";
 import { differenceInDays } from "date-fns";
-import { useState, useContext, useMemo, useEffect } from "react";
+import { useState, useEffect } from "react";
 import "./DateRangeSelection.css";
 
 const DateRangeSelection = ({ updateDateRange }) => {

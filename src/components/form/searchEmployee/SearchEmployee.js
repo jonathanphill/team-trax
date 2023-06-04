@@ -10,7 +10,7 @@ const SearchEmployee = () => {
   const { currentEmployeeName, setCurrentEmployeeName } =
     useContext(CurrentUser);
   const { formData, setFormData } = useContext(ClearData);
-  const { userId, setUserId } = useContext(UserId);
+  const {setUserId } = useContext(UserId);
   const targetRef = useRef(null);
   useEffect(() => {
     const newState = [];

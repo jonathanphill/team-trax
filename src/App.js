@@ -29,7 +29,7 @@ function App() {
   // create a variable to hold our database details and set the connection to the database.
   const database = getDatabase(firebase);
   // create a variable that makes reference to our database
-  const dbRef = ref(database);
+  // const dbRef = ref(database);
 
   //  sate to set the toggle state of the button so eveytime the button is clicked the state is rerendered.
   let [toggleForm, setToggleForm] = useState(false);
