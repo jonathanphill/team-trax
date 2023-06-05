@@ -14,6 +14,7 @@ import {
   push,
 } from "firebase/database";
 import firebase from "./firebase";
+import Logo from "./team-TRAX logo copy-01.svg";
 
 function App() {
   const [currentEmployeeName, setCurrentEmployeeName] = useState("");
@@ -79,27 +80,47 @@ function App() {
           <div className="App ">
             <header>
               <div className="header__text wrapper">
-                <h1>team-TRAX</h1>
-                <p>manage your teams attendance</p>
+                <div className="headerText">
+                  <h1>team-TRAX</h1>
+                  <p>manage your teams attendance</p>
+                </div>
+                <div className="headerLogo">
+                  <img className="logo" src={Logo} alt="" />
+                </div>
               </div>
+              
             </header>
             <main>
-              <div className="wrapper">
-                <div className="trackTime__button--container">
-                  <button
-                    className="trackTime__button"
-                    onClick={() => {
-                      setToggleForm(!toggleForm);
-                    }}
-                  >
-                    <BiCalendarPlus id="calendarPlus" />
-                    Track Time Off
-                  </button>
+              <section className="publishData">
+                <div className="wrapper">
+                  <div className="trackTime__button--container">
+                    <button
+                      className="trackTime__button"
+                      onClick={() => {
+                        setToggleForm(!toggleForm);
+                      }}
+                    >
+                      <BiCalendarPlus id="calendarPlus" />
+                      Track Time Off
+                    </button>
+                  </div>
+                  <div className="formContainer">
+                    {toggleForm && <Form clearForm={setToggleForm} />}
+                  </div>
+                
                 </div>
-                <div className="formContainer">
-                  {toggleForm && <Form clearForm={setToggleForm} />}
+              </section>
+              <section className="publishData">
+                <div className="wrapper">
+                  <div className="trackTime__button--container">
+                    <button
+                      className="trackTime__button"
+                    >
+                      Show Details
+                    </button>
+                  </div>                
                 </div>
-              </div>
+              </section>
             </main>
           </div>
         </ClearData.Provider>

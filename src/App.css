@@ -12,11 +12,29 @@
   padding-top: 8em;
   font-family: var(--ff-primary);
   font-size: var(--step-0);
+  /* border:3px solid tomato; */
 }
-
+/* .wrapper{
+  border:3px solid black;
+} */
+.header__text{
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
 .header__text h1{
   margin: 0;
   padding: 0;
+}
+.headerLogo{
+  height: 4em;
+  width: 4em;
+  position: absolute;
+  right: 20%;
+}
+.logo{
+  /* border:1px solid tomato; */
+  font-size: var(--step-0);
 }
 #calendarPlus {
     color: rgb(72, 72, 73);
@@ -29,7 +47,7 @@
 }
 
 .App header,
-.App main{
+.App .publishData{
   margin-bottom: 3em;
   border-bottom: 1px solid rgb(72, 72, 73);
 }
