@@ -25,7 +25,8 @@
     padding-left: .5em;
     border-radius: 10px;
     background-color: white;
-    margin: 1em 0 0 .75em;
+    margin: 1em 0 0 0;
+    
 
 }
 .nameContainer input {
@@ -76,7 +77,12 @@
 }
 
 
-
+@media(min-width:600px) {
+    .nameContainer {
+            margin: 1em 0 0 .75em;
+        }
+    
+}
 
 
 
