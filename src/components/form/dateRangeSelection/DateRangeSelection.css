@@ -10,17 +10,26 @@
     --box-shadow: 3px 3px 8px 2px rgba(0, 0, 0, 0.20);
 }
 
+
+/* CALENDER STYLES */
+
 .dateRangePicker {
-    padding: .35em .75em .625em;
+    padding: .35em 0 0;
     margin-top: 3em;
     margin-bottom: 3em;
 
 }
-/* CALENDER STYLES */
+
+.rdrMonth {
+    padding: 0 0.833em 1.666em 0;
+    width: 23.667em;
+}
+.rdrDefinedRangesWrapper {
+    display:none;
+}
 
 .rdrStaticRanges,
 .rdrDefinedRangesWrapper{
-    /* border:1px solid tomato; */
     border-radius: 10px;
     background-color:rgb(224, 166, 156);
 }
@@ -45,4 +54,20 @@
     font-weight: 300;
     font-family: var(--ff-primary);
     font-size: .8rem;
+}
+
+
+@media (min-width: 610px) {
+    .rdrDefinedRangesWrapper{
+        display:block;
+    }
+    .dateRangePicker {
+        padding: .35em .75em .625em;
+        margin-top: 3em;
+        margin-bottom: 3em;
+    }
+    .rdrMonth {
+        padding: 0 0.833em 1.666em 0.833em;
+        width: 27.667em;
+    }
 }
