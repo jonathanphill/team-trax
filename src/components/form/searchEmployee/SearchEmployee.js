@@ -23,6 +23,7 @@ const SearchEmployee = () => {
     onValue(dbRef, (response) => {
       // here we use Firebase's .val() method to parse our database info the way we want it
       const data = response.val();
+      console.log(data);
       for (let key in data) {
         newState.push({ key: key, employee: data[key] });
       }
