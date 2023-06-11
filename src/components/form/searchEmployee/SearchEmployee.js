@@ -49,8 +49,19 @@ const SearchEmployee = () => {
 
   const handleChange = (e) => {
     const name = e.target.value;
+    const inTheList= searchableList.some((obj)=>{
+      return(obj.employee.firstName.toLowerCase().includes(name.toLowerCase()) ||
+        obj.employee.lastName.toLowerCase().includes(name.toLowerCase()))
+    })
+    
+    if(!inTheList){
+      setCurrentEmployeeName("");
+    }else{
+      setCurrentEmployeeName(name);
+    }
+    
     // setEmployeeName(name);
-    setCurrentEmployeeName(name);
+    
   };
 
   const handleNameClick = (e) => {
