@@ -1,13 +1,19 @@
 import { useState, useContext } from "react";
 import { UserId, ClearData, CurrentUser } from "../../context/EmployeeContext";
 import "./Modal.css";
-const Modal = ({ closeModal, selectedDateRange, radioSelection }) => {
+const Modal = ({
+  closeModal,
+  selectedDateRange,
+  radioSelection,
+  closeForm,
+  clearFormCom
+}) => {
   const { formData, setFormData } = useContext(ClearData);
   const { currentEmployeeName, setCurrentEmployeeName } =
     useContext(CurrentUser);
   const { userId } = useContext(UserId);
 
-  const handleConfirmation= (e)=>{
+  const handleConfirmation = (e) => {
     setFormData({
       ...formData,
       timeOffData: {
@@ -15,17 +21,19 @@ const Modal = ({ closeModal, selectedDateRange, radioSelection }) => {
         personalTime: [],
       },
     });
-     e.preventDefault();
-     if (userId && radioSelection) {
-       if (radioSelection === "sickTime") {
-         formData.timeOffData.sickTime.push(selectedDateRange);
-       } else if (radioSelection === "personalTime") {
-         formData.timeOffData.personalTime.push(selectedDateRange);
-       }
-     }
-     setFormData(formData);
+    e.preventDefault();
+    if (userId && radioSelection) {
+      if (radioSelection === "sickTime") {
+        formData.timeOffData.sickTime.push(selectedDateRange);
+      } else if (radioSelection === "personalTime") {
+        formData.timeOffData.personalTime.push(selectedDateRange);
+      }
+    }
+    setFormData(formData);
+    setCurrentEmployeeName("");
+    clearFormCom(!true);
 
-  }
+  };
   return (
     <div className="modalBackground">
       <div className="modalContainer">
@@ -51,7 +59,16 @@ const Modal = ({ closeModal, selectedDateRange, radioSelection }) => {
           <p>{`Number of Day/s: ${selectedDateRange.numberOfDays}`}</p>
         </div>
         <div className="footer">
-          <button onClick={() => closeModal(false)} id="cancelBtn">
+          <button
+            onClick={() => {
+              closeModal(false);
+              closeForm(true);
+              setFormData({...formData,
+                radioSelection:""});
+                setCurrentEmployeeName("")
+            }}
+            id="cancelBtn"
+          >
             Cancel
           </button>
           <button onClick={handleConfirmation}>Confirm</button>

@@ -7,13 +7,14 @@ import { UserId, ClearData, CurrentUser } from "../context/EmployeeContext";
 import Modal from "./modal/Modal";
 
 
-const Form = ({ clearForm }) => {
+const Form = ({clearForm}) => {
   const clearDateRange = {
     startDate: "",
     endDate: "",
     numberOfDays: 0,
   };
   const [openModal, setOpenModel]= useState(false);
+  const[showForm, setShowForm] = useState(true)
   const [radioSelection, setRadioSelection] = useState("");
   const [selectedDateRange, setSelectedDateRange] = useState(clearDateRange);
   const { formData, setFormData } = useContext(ClearData);
@@ -24,29 +25,51 @@ const Form = ({ clearForm }) => {
     e.preventDefault();
     
     setFormData(formData);
-    setRadioSelection("");
-    setCurrentEmployeeName("");
-    clearForm(!true);
-    setOpenModel(true)
+    setShowForm(false);
+    // setRadioSelection("");
+    // setCurrentEmployeeName("");
+    // clearForm(!true);
+    if(radioSelection && currentEmployeeName){
+      setOpenModel(true)
+    }else{
+      clearForm(!true);
+      setRadioSelection("");
+      setCurrentEmployeeName("");
+    }
   };
   return (
     <>
       <div className="trackTime__form--container">
-        <form onSubmit={handleFormSubmit} action="" className="trackTime__form">
-          <RadioSelection setRadioSelection={setRadioSelection} />
-          <SearchEmployee />
-          <DateRangeSelection updateDateRange={setSelectedDateRange} />
-          <div>
-            <button className="trackTime__submit--button" type="submit">
-              Submit
-            </button>
-          </div>
-        </form>
+        {showForm && (
+          <form
+            onSubmit={handleFormSubmit}
+            action=""
+            className="trackTime__form"
+          >
+            <RadioSelection setRadioSelection={setRadioSelection} />
+            <SearchEmployee />
+            <DateRangeSelection updateDateRange={setSelectedDateRange} />
+            <div>
+              <button
+                className="trackTime__submit--button"
+                type="submit"
+                onClick={handleFormSubmit}
+              >
+                Submit
+              </button>
+            </div>
+          </form>
+        )}
       </div>
-      {openModal && <Modal 
-      closeModal={setOpenModel}
-      radioSelection={radioSelection}
-      selectedDateRange={selectedDateRange} />}
+      {openModal && currentEmployeeName && (
+        <Modal
+          closeModal={setOpenModel}
+          closeForm={setShowForm}
+          radioSelection={radioSelection}
+          selectedDateRange={selectedDateRange}
+          clearFormCom={clearForm}
+        />
+      )}
     </>
   );
 };

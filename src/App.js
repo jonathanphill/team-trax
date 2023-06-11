@@ -19,6 +19,7 @@ import Logo from "./team-TRAX logo copy-01.svg";
 function App() {
   const [currentEmployeeName, setCurrentEmployeeName] = useState("");
   const [userId, setUserId] = useState(null);
+  let [toggleForm, setToggleForm] = useState(false);
   const [formData, setFormData] = useState({
     key: "",
     radioSelection: "",
@@ -33,7 +34,7 @@ function App() {
   // const dbRef = ref(database);
 
   //  sate to set the toggle state of the button so eveytime the button is clicked the state is rerendered.
-  let [toggleForm, setToggleForm] = useState(false);
+  
 
   useEffect(() => {
     if(!formData.key){
@@ -105,11 +106,13 @@ function App() {
                     </button>
                   </div>
                   <div className="formContainer">
-                    {toggleForm && <Form clearForm={setToggleForm} />}
+                    {toggleForm && <Form clearForm={setToggleForm}/>}
                   </div>
                 
                 </div>
               </section>
+
+              {/* ****************************************** */}
               <section className="publishData">
                 <div className="wrapper">
                   <div className="trackTime__button--container">
