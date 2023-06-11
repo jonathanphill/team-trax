@@ -4,6 +4,8 @@ import SearchEmployee from "./searchEmployee/SearchEmployee";
 import { useState, useContext } from "react";
 import DateRangeSelection from "./dateRangeSelection/DateRangeSelection";
 import { UserId, ClearData, CurrentUser } from "../context/EmployeeContext";
+import Modal from "./modal/Modal";
+
 
 const Form = ({ clearForm }) => {
   const clearDateRange = {
@@ -11,33 +13,21 @@ const Form = ({ clearForm }) => {
     endDate: "",
     numberOfDays: 0,
   };
+  const [openModal, setOpenModel]= useState(false);
   const [radioSelection, setRadioSelection] = useState("");
   const [selectedDateRange, setSelectedDateRange] = useState(clearDateRange);
   const { formData, setFormData } = useContext(ClearData);
-  const {setCurrentEmployeeName } =
+  const { currentEmployeeName, setCurrentEmployeeName } =
     useContext(CurrentUser);
-  const { userId} = useContext(UserId);
   const handleFormSubmit = (e) => {
-    setFormData({
-      ...formData,
-      timeOffData: {
-        sickTime: [],
-        personalTime: [],
-      },
-    });
+    
     e.preventDefault();
-    if (userId && radioSelection) {
-      
-      if (radioSelection === "sickTime") {
-        formData.timeOffData.sickTime.push(selectedDateRange);
-      } else if (radioSelection === "personalTime") {
-        formData.timeOffData.personalTime.push(selectedDateRange);
-      }
-    }
+    
     setFormData(formData);
     setRadioSelection("");
     setCurrentEmployeeName("");
     clearForm(!true);
+    setOpenModel(true)
   };
   return (
     <>
@@ -53,10 +43,10 @@ const Form = ({ clearForm }) => {
           </div>
         </form>
       </div>
-      <div className="modalContainer">
-        
-      </div>
-
+      {openModal && <Modal 
+      closeModal={setOpenModel}
+      radioSelection={radioSelection}
+      selectedDateRange={selectedDateRange} />}
     </>
   );
 };
