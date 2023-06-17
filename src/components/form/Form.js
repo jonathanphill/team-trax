@@ -7,7 +7,7 @@ import { ClearData, CurrentUser } from "../context/EmployeeContext";
 import Modal from "./modal/Modal";
 
 
-const Form = ({clearForm}) => {
+const Form = ({clearForm, clearDetail}) => {
   const clearDateRange = {
     startDate: "",
     endDate: "",
@@ -33,6 +33,7 @@ const Form = ({clearForm}) => {
       setOpenModel(true)
     }else{
       clearForm(!true);
+      clearDetail(!true);
       setRadioSelection("");
       setCurrentEmployeeName("");
     }

@@ -102,7 +102,7 @@ function App() {
                       className="main__button"
                       onClick={() => {
                         setToggleForm(!toggleForm);
-                        settoggleDetail(!toggleDetail);
+                        settoggleDetail(false);
                       }}
                     >
                       <BiCalendarPlus id="calendarPlus" />
@@ -110,7 +110,10 @@ function App() {
                     </button>
                   </div>
                   <div className="formContainer">
-                    {toggleForm && <Form clearForm={setToggleForm} />}
+                    {toggleForm && (
+                      <Form clearForm={setToggleForm} 
+                      clearDetail={settoggleDetail} />
+                    )}
                   </div>
                 </div>
               </section>
