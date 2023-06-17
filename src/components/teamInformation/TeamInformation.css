@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap');
+
+:root {
+    --ff-primary: "Montserrat", sans-serif;
+    --fw-reg: 400;
+    --fw-semi-bold: 500;
+    --fw-bold: 600;
+    --step-0: clamp(1.00rem, calc(0.9rem + 0.42vw), 1.25rem);
+    --box-shadow: 3px 3px 8px 2px rgba(0, 0, 0, 0.20);
+}
+
+/* table,
+td {
+    border: 1px solid #333;
+    width: 80%;
+    height: 2em;
+} */
+table {
+    border-collapse: collapse;
+    width: 80%;
+    height: 2em;
+    overflow: hidden;
+    border-radius: 10px;
+    font-size: var(--step-0);
+    box-shadow: var(--box-shadow);
+}
+
+thead{
+    background-color: #2a4466dc;
+    color: #fff;
+    height: 2em;
+}
+th{
+    text-align: center;
+    padding: .5em 0;
+}
+td{
+    padding: .5em;
+    text-align: center;
+}
+/* .centeredText{
+    text-align: center;
+} */
+tr:nth-of-type(2n){
+background-color: hsla(214, 39%, 45%, 0.384);
+}
+.teamInformation__list h3{
+    margin: 0;
+}
+
+.teamInformation__list li{
+    margin-bottom: 4em;
+}

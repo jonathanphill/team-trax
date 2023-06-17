@@ -36,13 +36,14 @@
   
   font-size: var(--step-0);
 }
-#calendarPlus {
+#calendarPlus,
+#userPlus {
     color: rgb(72, 72, 73);
     font-size: 1.5em;
     margin-right: .5em;
     
 }
-.trackTime__button--container{
+.main__button--container{
   margin-bottom: 4em;
 }
 
@@ -51,7 +52,7 @@
   margin-bottom: 3em;
   border-bottom: 1px solid rgb(72, 72, 73);
 }
-.trackTime__button{
+.main__button{
   width: 80%;
   font-family: var(--ff-primary);
   font-size: var(--step-0);
@@ -64,12 +65,12 @@
   cursor: pointer;
   box-shadow: var(--box-shadow);
 }
-.trackTime__button:hover,
-.trackTime__submit--button:hover{
+.main__button:hover,
+.main__submit--button:hover{
     scale: .995;
 }
-.trackTime__button:active,
-.trackTime__submit--button:active{
+.main__button:active,
+.main__submit--button:active{
     background-color: rgb(121, 183, 207);
     transform: translateY(4px);
 
@@ -84,4 +85,8 @@
       right: 20%;
     }
 
+}
+
+.publishData{
+  padding-bottom: 3em;
 }

@@ -31,7 +31,8 @@
 .rdrStaticRanges,
 .rdrDefinedRangesWrapper{
     border-radius: 10px;
-    background-color:rgb(224, 166, 156);
+    background-color:#2a4466;
+    color: white;
 }
 .rdrStaticRangeLabel {
     font-family: var(--ff-primary);

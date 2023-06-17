@@ -1,6 +1,6 @@
 import "./App.css";
 import "./SetUp.css";
-import { BiCalendarPlus } from "react-icons/bi";
+import { BiCalendarPlus, BiUserPlus } from "react-icons/bi";
 import { useState, useEffect } from "react";
 import Form from "./components/form/Form";
 import {
@@ -15,11 +15,13 @@ import {
 } from "firebase/database";
 import firebase from "./firebase";
 import Logo from "./team-TRAX logo copy-01.svg";
+import TeamInformation from "./components/teamInformation/TeamInformation";
 
 function App() {
   const [currentEmployeeName, setCurrentEmployeeName] = useState("");
   const [userId, setUserId] = useState(null);
   let [toggleForm, setToggleForm] = useState(false);
+  let [toggleDetail, settoggleDetail] = useState(false);
   const [formData, setFormData] = useState({
     key: "",
     radioSelection: "",
@@ -37,6 +39,8 @@ function App() {
   
 
   useEffect(() => {
+
+    
     if(!formData.key){
       formData.timeOffData.sickTime.length=0
       formData.timeOffData.personalTime.length=0
@@ -89,14 +93,13 @@ function App() {
                   <img className="logo" src={Logo} alt="" />
                 </div>
               </div>
-              
             </header>
             <main>
               <section className="publishData">
                 <div className="wrapper">
-                  <div className="trackTime__button--container">
+                  <div className="main__button--container">
                     <button
-                      className="trackTime__button"
+                      className="main__button"
                       onClick={() => {
                         setToggleForm(!toggleForm);
                       }}
@@ -106,22 +109,27 @@ function App() {
                     </button>
                   </div>
                   <div className="formContainer">
-                    {toggleForm && <Form clearForm={setToggleForm}/>}
+                    {toggleForm && <Form clearForm={setToggleForm} />}
                   </div>
-                
                 </div>
               </section>
 
               {/* ****************************************** */}
               <section className="publishData">
                 <div className="wrapper">
-                  <div className="trackTime__button--container">
+                  <div className="main__button--container">
                     <button
-                      className="trackTime__button"
+                      className="main__button"
+                      onClick={() => settoggleDetail(!toggleDetail)}
                     >
-                      Show Details
+                      <BiUserPlus id="userPlus" />
+                      Show Team Details
                     </button>
-                  </div>                
+                  </div>
+
+                  <div className="teamInformation">
+                    {toggleDetail && <TeamInformation />}
+                  </div>
                 </div>
               </section>
             </main>
