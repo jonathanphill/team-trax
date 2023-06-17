@@ -102,6 +102,7 @@ function App() {
                       className="main__button"
                       onClick={() => {
                         setToggleForm(!toggleForm);
+                        settoggleDetail(!toggleDetail);
                       }}
                     >
                       <BiCalendarPlus id="calendarPlus" />

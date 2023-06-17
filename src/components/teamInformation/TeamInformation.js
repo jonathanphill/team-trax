@@ -75,7 +75,7 @@ const TeamInformation = () => {
     const dbRef = ref(database);
     // add an event listener to that 'dbRef' variable that will fire
     // from the database, and call that data 'response'.
-    onValue(dbRef, (response) => {
+    const unsubscribe= onValue(dbRef, (response) => {
       // here we use Firebase's .val() method to parse our database info the way we want it
       const data = response.val();
 
@@ -90,6 +90,7 @@ const TeamInformation = () => {
       }
       setSearchableList(newState);
     });
+    return () => unsubscribe();
   }, []);
   //  console.log(searchableList);
   return (
