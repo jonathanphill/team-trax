@@ -3,7 +3,7 @@ import RadioSelection from "./radioSelection/RadioSelection";
 import SearchEmployee from "./searchEmployee/SearchEmployee";
 import { useState, useContext } from "react";
 import DateRangeSelection from "./dateRangeSelection/DateRangeSelection";
-import { UserId, ClearData, CurrentUser } from "../context/EmployeeContext";
+import { ClearData, CurrentUser } from "../context/EmployeeContext";
 import Modal from "./modal/Modal";
 
 

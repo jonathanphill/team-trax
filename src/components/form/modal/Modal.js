@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import {useContext } from "react";
 import { UserId, ClearData, CurrentUser } from "../../context/EmployeeContext";
 import "./Modal.css";
 const Modal = ({
