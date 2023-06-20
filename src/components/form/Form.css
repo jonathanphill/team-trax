@@ -1,0 +1,35 @@
+.trackTime__form--container{
+    margin-bottom: 3em;
+}
+
+
+
+.trackTime__submit--button {
+    font-family: var(--ff-primary);
+    font-size: var(--step-0);
+    background-color: skyblue;
+    border-radius: 10px;
+    padding: .5em 0 .5em .5em;
+    cursor: pointer;
+    box-shadow: var(--box-shadow);
+    width: 40%;
+    padding: .8em 0 .8em .5em;
+    font-weight: 600;
+   
+}
+.trackTime__submit--button:hover {
+    scale: .995;
+    color: whitesmoke;
+
+}
+.trackTime__submit--button:active {
+    background-color: rgb(121, 183, 207);
+    transform: translateY(4px);
+}
+
+@media(min-width:600px) {
+    .trackTime__submit--button {
+            width: 18%;
+        }
+
+}
