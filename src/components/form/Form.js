@@ -69,6 +69,7 @@ const Form = ({clearForm, clearDetail}) => {
           radioSelection={radioSelection}
           selectedDateRange={selectedDateRange}
           clearFormCom={clearForm}
+          clearDetail={clearDetail}
         />
       )}
     </>

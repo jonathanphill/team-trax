@@ -6,7 +6,8 @@ const Modal = ({
   selectedDateRange,
   radioSelection,
   closeForm,
-  clearFormCom
+  clearFormCom,
+  clearDetail,
 }) => {
   const { formData, setFormData } = useContext(ClearData);
   const { currentEmployeeName, setCurrentEmployeeName } =
@@ -32,7 +33,6 @@ const Modal = ({
     setFormData(formData);
     setCurrentEmployeeName("");
     clearFormCom(!true);
-
   };
   return (
     <div className="modalBackground">
@@ -63,15 +63,18 @@ const Modal = ({
             onClick={() => {
               closeModal(false);
               closeForm(true);
-              setFormData({...formData,
-                radioSelection:""});
-                setCurrentEmployeeName("")
+              setFormData({ ...formData, radioSelection: "" });
+              setCurrentEmployeeName("");
+              clearDetail(!true);
             }}
             id="cancelBtn"
           >
             Cancel
           </button>
-          <button onClick={handleConfirmation}>Confirm</button>
+          <button onClick={(e)=>{
+            handleConfirmation(e);
+            clearDetail(!true);
+            }}>Confirm</button>
         </div>
       </div>
       {/* <form action="">
